@@ -1,24 +1,9 @@
-# README
+# Generic Stimulus Controller for Nested Attributes
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setting Up Project
 
-Things you may want to cover:
+Run the database migration to create the tables inside the database
+<code>rails db:migrate</code>
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+config/environments/developement.rb -> put your site url you are using to test
+<code>config.hosts << "your site URL here"</code>
