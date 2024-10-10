@@ -53,7 +53,7 @@ class StudentsController < ApplicationController
     @student.destroy!
 
     respond_to do |format|
-      format.html { redirect_to teacher_students_path(@teacher.id), status: :see_other, notice: "Student was successfully destroyed." }
+      format.html { redirect_to teacher_path(@teacher), status: :see_other, notice: "Student was successfully destroyed." }
       format.json { head :no_content }
     end
   end
