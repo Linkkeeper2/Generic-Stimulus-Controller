@@ -1,0 +1,57 @@
+<p style="color: green"><%= notice %></p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <div id="teachers">
+      <tr>
+        <%= render @teacher %>
+        <td>
+          <%= link_to "Show this Teacher", @teacher, class: "btn btn-primary" %>
+          <%= link_to "Edit this Teacher", edit_teacher_path(@teacher), class: "btn btn-warning" %>
+          
+        </td>
+      </tr>
+    </div>
+    
+  </tbody>
+</table>
+
+<h3>Students of <%= @teacher.name %></h3>
+<%= link_to "New Student", new_teacher_student_path(@teacher), class: "btn btn-primary" %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <div id="students">
+      <% @teacher.students.each do |student| %>
+        <tr>
+          <%= render student %>
+          <td>
+            <%= link_to "Show this Student", teacher_student_path(student.teacher.id, student.id), class: "btn btn-primary" %>
+            <%= link_to "Edit this Student", edit_teacher_student_path(student.teacher.id, student.id), class: "btn btn-warning" %>
+          </td>
+        </tr>
+      <% end %>
+    </div>
+    
+  </tbody>
+</table>
+
+<div>
+  <%= link_to "Back to Teachers", teachers_path, class: "btn btn-primary" %>
+  <%= button_to "Destroy this Teacher", @teacher, method: :delete, class: "btn btn-danger" %>
+</div>

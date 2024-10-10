@@ -1,0 +1,30 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Students of <%= @teacher.name %></h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <div id="students">
+      <% @students.each do |student| %>
+        <tr>
+          <%= render student %>
+          <td>
+            <%= link_to "Show this student", teacher_student_path(@teacher, student), class: "btn btn-primary" %>
+            <%= link_to "Edit this student", edit_teacher_student_path(@teacher, student), class: "btn btn-warning" %>
+          </td>
+        </tr>
+      <% end %>
+    </div>
+    
+  </tbody>
+</table>
+
+<%= link_to "New student", new_teacher_student_path, class: "btn btn-primary" %>
+<%= link_to "Back to " + @teacher.name, teacher_path(@teacher.id), class: "btn btn-primary" %>

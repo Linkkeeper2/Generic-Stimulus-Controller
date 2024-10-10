@@ -1,0 +1,24 @@
+<p style="color: green"><%= notice %></p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <%= render @student %>
+      <td>
+        <%= link_to "Edit this student", edit_teacher_student_path(@teacher, @student), class: "btn btn-warning" %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <%= button_to "Destroy this student", teacher_student_path(@teacher, @student), method: :delete, class: "btn btn-danger" %>
+  <%= link_to "Back to Students of " + @teacher.name, teacher_students_path(@teacher), class: "btn btn-primary my-3" %>
+</div>

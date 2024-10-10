@@ -1,0 +1,45 @@
+<div class="w-50">
+  <%= form_with model: teacher, data: { controller: 'nested-form' } do |form| %>
+    <% if teacher.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(teacher.errors.count, "error") %> prohibited this teacher from being saved:</h2>
+
+        <ul>
+          <% teacher.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.label :name, style: "display: block", class: "form-label" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+
+    <div>
+      <%= form.label :subject, style: "display: block", class: "form-label" %>
+      <%= form.text_field :subject, class: "form-control" %>
+    </div>
+
+    <template data-nested-form-target="template">
+      <%= form.fields_for :students, Student.new, child_index: "NEW_RECORD" do |student_fields| %>
+        <%= render "student", form: student_fields %>
+      <% end %>
+    </template>
+
+    <h3>Students</h3>
+
+    <%= form.fields_for :students do |student_fields| %>
+      <%= render "student", form: student_fields %>
+    <% end %>
+
+    <div data-nested-form-target="target"></div>
+
+    <button type="button" data-action="nested-form#add" class="btn btn-success">Add Student</button>
+
+    <div>
+      <%= form.submit "Save Teacher", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
